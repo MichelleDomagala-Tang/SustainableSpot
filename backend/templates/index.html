@@ -1,0 +1,93 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <title>Sustainable Spot</title>
+    <script src="https://kit.fontawesome.com/3fa70fc834.js" crossorigin="anonymous"></script>
+</head> 
+<body> 
+    <div style="background: #F7F7F7; height: 100%; width: 100%;">
+        <h1 style="background: #43D1AF;
+        padding: 20px 0;
+        font-size: 70px;
+        font-weight: 300;
+        text-align: center;
+        color: #fff;
+        margin: -16px -16px 16px -16px;">Sustainable Spot</h1>
+        
+    <form action="{{ url_for("index")}}" method="post">
+        <input type="text" id="city-name" name="city"
+        style="border-radius: 20px; box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+        width: 80%; border: 0; padding: 2%; margin: 2% 6%; font-size: 15px;" placeholder="Enter a city name...">
+        <input type="text" id="country-name" name="country"
+        style="border-radius: 20px; box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+        width: 80%; border: 0; padding: 2%; margin: 2% 6%; font-size: 15px;" placeholder="Enter the country name...">
+        <button type="submit" style="box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            width: 50%;
+            padding: 25px 2%;
+            background: #43D1AF;
+            border-bottom: 2px solid #30C29E;
+            border-top-style: none;
+            border-right-style: none;
+            border-left-style: none;	
+            margin: 0 25%;
+            color: #fff;font-size: 20px;">Generate Results</button> 
+
+        <!-- <input type="text" id="city-name" name="city"
+        style="border-radius: 20px; box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+        width: 80%; border: 0; padding: 2%; margin: 2% 6%; font-size: 15px;" placeholder="Enter a city name...">
+        <button type="submit">Login</button> -->
+        <!-- <form method="POST" action="/process"> 
+            
+        </form>  -->
+        <div id="googleMap" style="width:90%;height:400px; margin: 5%;"></div>
+        <div style="margin: 3% 10%;">
+            <i class="fa fa-solar-panel" style="font-size: 50px;"></i>
+            <h2>SOLAR POWER</h2>
+            <p style="font-size: 20px;">Reccomendation: {{percentages['solar']}} %</p>
+            <p style="font-size: 20px; font-weight: bold;">STATISTICS</p>
+            <p style="font-size: 20px;">Average Daily Solar Radiance: {{solar_params['Average_Daily_Solar_Radiance (W/m2)']}} W/m2</p>
+            <p style="font-size: 20px;">Average Cloud Coverage: {{solar_params['Average_Cloud_Coverage (%)']}} %</p>
+            <br>
+        </div>
+        <div style="margin: 3% 10%;">
+            <i class="fa-solid fa-wind" style="font-size: 50px;"></i>
+            <h2>WIND POWER</h2>
+            <p style="font-size: 20px;">Reccomendation: {{percentages['wind']}} %</p>
+            <p style="font-size: 20px; font-weight: bold;">STATISTICS</p>
+            <p style="font-size: 20px;">Average Wind Speed: {{wind_params['Average_Wind_Speed (km/h)']}} km/h</p>
+            <p style="font-size: 20px;">Average Atmospheric Pressure: {{wind_params['Average_Atmospheric_Pressure (hPa)']}} hPa</p>
+            <br>
+        </div>
+        <div style="margin: 3% 10%;">
+            <i class="fa-solid fa-circle-radiation" style="font-size: 50px;"></i>
+            <h2>NUCLEAR POWER</h2>
+            <p style="font-size: 20px;">Reccomendation: {{percentages['nuclear']}} %</p>
+            <p style="font-size: 20px; font-weight: bold;">STATISTICS</p>
+            <p style="font-size: 20px;">Startup Cost / City GDP: {{nuclear_params['Startup_Cost_vs_City_GDP (USD)']}}</p>
+            <p style="font-size: 20px;">Population Density: {{nuclear_params['Population_Density (people/km2)']}} people/km2</p>
+            <br>
+        </div>  
+    </div>
+<script type="text/javascript">
+var lati = {{latitude}}// Number(document.currentScript.getAttribute('lat'))
+var longi = {{longitude}}// Number(document.currentScript.getAttribute('long'))
+</script>
+<script lat={{latitude}} long="{{longitude}}">
+function myMap() {
+
+// const position = { lat: 43.7417, lng: -79.3733 };
+const position = {lat:lati, lng:longi}
+var mapProp= {
+  center: position,
+  zoom:10,
+};
+var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=&callback=myMap"></script>
+</body> 
+</html> 
