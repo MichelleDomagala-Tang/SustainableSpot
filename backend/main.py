@@ -14,7 +14,6 @@ import statistics
 import numpy as np
 import country_converter as coco
 
-
 app = Flask(__name__)
 
 @app.route('/', methods =["GET", "POST"])
@@ -34,7 +33,8 @@ def index():
         return render_template('index.html', percentages=norm_eff_values, wind_params=wind_params, 
                                solar_params=solar_params, nuclear_params=nuclear_params, latitude=latitude, longitude=longitude)
     else:
-        return render_template('index.html')
+        return render_template('index.html', percentages=None, wind_params=None, 
+                               solar_params=None, nuclear_params=None, latitude=None, longitude=None)
 
 def load_json_values():
     return {"avg-wind-speed": None, "avg-cloud-coverage": None, "population-density": None, "avg-DSR": None, "avg-surface-pressure": None}
